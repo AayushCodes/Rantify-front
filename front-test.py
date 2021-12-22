@@ -1,0 +1,16 @@
+from tkinter import *
+
+window = Tk()
+window.geometry('300x500')
+window.title("GUI 1")
+bg = PhotoImage(file = "bg.png")
+c1 = Canvas(window, width=500, height=300)
+x = Label(window, text="Sesky Boi").pack()
+b = Button(window, text="Exit", bd='78', command=window.destroy).pack(side = 'bottom')
+c1.pack(fill = "both", expand=True)
+c1.create_image( 0, 0, image = bg, anchor = "nw")
+name = Label(window, text = "Name").place(x = 30,y = 50)  
+password = Label(window, text = "Rant").place(x = 30, y = 130)  
+e1 = Entry(window).place(x = 85, y = 50)  
+e3 = Entry(window).place(x = 80, y = 130)
+window.mainloop()
