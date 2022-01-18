@@ -9,6 +9,11 @@ root.title('Rantify-Music That You Like')
 root.iconbitmap('D:\Github\Rantify-front\icon.ico')
 root.geometry('1920x1080')
 
+img=PhotoImage(file ="D:\Github\Rantify-front\log.png")
+label = Label(root, image = img)
+label.pack(side='right')
+
+
 
 #background of the landing page 
 '''bg=PhotoImage(file = "D:\Github\Rantify-front\Background_landingpage.png")
@@ -48,6 +53,7 @@ body=Label(root,text='Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
 body1=Label(root,text='sed do eiusmod tempor incididunt ut labore et',font=(24)).place(x=100,y=250)
 body2=Label(root,text='sed do eiusmod tempor incididunt ut labore et',font=(23)).place(x=100,y=300)
 body2=Label(root,text='sed do eiusmod tempor incididunt ut labore et',font=(23)).place(x=100,y=350)
+
 
 
 
