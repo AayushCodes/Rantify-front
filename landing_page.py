@@ -6,10 +6,10 @@ import tkinter.font
 #window 
 root=Tk()
 root.title('Rantify-Music That You Like')
-root.iconbitmap('D:\Github\Rantify-front\icon.ico')
+root.iconbitmap('icon.ico')
 root.geometry('1920x1080')
 
-img=PhotoImage(file ="D:\Github\Rantify-front\log.png")
+img=PhotoImage(file ="log.png")
 label = Label(root, image = img)
 label.pack(side='right')
 
@@ -29,7 +29,7 @@ sub_head=Label(root,text='Music That You Like',font=("Roboto", 15, "italic")).pa
 '''bg='#97D5FA'''
 
 '''#logo resize
-pic=Image.open('"D:\Github\Rantify-front\logo.png"')
+pic=Image.open('"D:/Github\Rantify-front\logo.png"')
 resized=pic.resize((100,100),Image.ANTIALIAS)
 newlogo=ImageTk.PhotoImage(resized)'''
 
@@ -37,7 +37,7 @@ newlogo=ImageTk.PhotoImage(resized)'''
 #logo
 '''canvas = Canvas(root, width = 100, height = 100)
 canvas.pack()'''
-img = PhotoImage(file="D:\Github\Rantify-front\log.png")
+img = PhotoImage(file="log.png")
 Button(root,  image = img).place()
 '''canvas.create_image(5,5, anchor=NW, image=img)'''
 

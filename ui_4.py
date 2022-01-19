@@ -1,14 +1,21 @@
 from curses.textpad import Textbox
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
+from PIL import ImageTk, Image
 
 win = Tk()
-
+win.title("UI-4")
 win.geometry('500x450')
 
+#logo = Image.open("logo.png")
+#logo_res = logo.resize(70, 70)
+
+ 
+#img = Label(win, image=logo).place(x=10, y=30)
 
 head1 = Label(win, text="Rantify", font=("Lovelo", 20, "bold")).pack()
 head2 = Label(win, text="The Music You Like", font=("Roboto", 15, "italic")).pack()
+
 
 rt = Label(win, text="Title").place(x = 40, y = 70)
 e1 = Entry(win).place(x = 80, y = 70)

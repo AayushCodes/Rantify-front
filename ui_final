@@ -1,0 +1,27 @@
+from curses.textpad import Textbox
+from tkinter import *
+from tkinter.scrolledtext import ScrolledText
+from PIL import ImageTk, Image
+import webbrowser
+
+win = Tk()
+win.title("UI-Final")
+win.geometry('500x450')
+
+
+head1 = Label(win, text="Rantify", font=("Lovelo", 20, "bold")).pack()
+head2 = Label(win, text="The Music You Like", font=("Roboto", 15, "italic")).pack()
+head3 = Label(win, text="HMM......Feeling Better", font=("Comic Sans", 14)).place(x = 40, y = 85)
+head4 = Label(win, text="Here's Your Personalized Spotify Playlist").place(x = 40, y = 120)
+
+def callback(url):
+   webbrowser.open_new_tab(url)
+
+#Create a Label to display the link
+link = Label(win, text="Click Me Daddy",font=('Helveticabold', 15), fg="blue", cursor="hand")
+link.place(x = 40, y = 150)
+link.bind("<Button-1>", lambda e:
+callback("https://www.youtube.com/watch?v=LIIDh-qI9oI"))
+
+
+win.mainloop()
