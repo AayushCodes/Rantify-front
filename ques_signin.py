@@ -14,13 +14,15 @@ root.geometry('500x450')
 bg1=Label(root,image=bg)
 bg1.place(x=0,y=0,relwidth=1,relheight=1)'''
 
-#header
+
+
+'''#header
 head=Label(root,text='Rantify',font=("Lovelo", 25, "bold"),bg='#97D5FA').pack()
-'''bg='#97D5FA'''
+
 
 #sub-header
 sub_head=Label(root,text='Music That You Like',font=("Roboto", 15, "italic"),bg='#97D5FA').pack()
-'''bg='#97D5FA'''
+
 
 #logo
 canvas = Canvas(root, width = 99, height = 99)
@@ -42,5 +44,51 @@ e.place(x=40,y=440)
 q3=Label(root,text='1.What genre do you like the most ?',font=('Comic Sans MS',20)).place(x=40,y=480)
 e=Entry(root,width=40)
 e.place(x=40,y=540)
+
+canvas1 = Canvas(root, width = 1920, height = 1080)
+canvas1.place(x=3,y=3)
+mg = PhotoImage(file="D:\Github\Rantify-front\quesbg.png")
+canvas1.create_image(1,1, anchor=NW, image=mg)'''
+
+canvas1 = Canvas(root, width = 1920, height = 1080)
+canvas1.place(x=3,y=3)
+mg = PhotoImage(file="D:\Github\Rantify-front\quesbg.png")
+canvas1.create_image(1,1, anchor=NW, image=mg)
+
+
+#logo
+canvas = Canvas(root, width = 39, height = 39)
+canvas.place(x=3,y=3)
+img = PhotoImage(file="D:\Github\Rantify-front\ewlog.png")
+canvas.create_image(1,1, anchor=NW, image=img)
+
+
+
+canvas1.create_text(140,25, text="Rantify", fill="black", font=('Kollektif 30 bold'))
+canvas1.pack()
+
+canvas1.create_text(600, 130, text="A Few Questions For You",font=('Helvetica','40'))
+canvas1.pack()
+
+canvas1.create_text(480, 210, text='1.How was Your Day?',font=('Helvetica','28'))
+canvas1.pack()
+
+e=Entry(root,width=100)
+e.place(x=310,y=250)
+
+
+canvas1.create_text(480, 310, text='1.How was Your Day?',font=('Helvetica','28'))
+canvas1.pack()
+
+e=Entry(root,width=100)
+e.place(x=310,y=350)
+
+canvas1.create_text(480, 410, text='1.How was Your Day?',font=('Helvetica','28'))
+canvas1.pack()
+e=Entry(root,width=100)
+e.place(x=310,y=450)
+
+#submit button 
+sub=Button(root,text='Submit',font=('Helvetica',15),width=12,height=1).place(x=750,y=500)
 
 root.mainloop()
