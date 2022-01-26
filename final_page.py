@@ -50,7 +50,7 @@ rimg1 = ImageTk.PhotoImage(img1)
 l1= Label(win, image=rimg1, cursor="hand2")
 l1.place(x = 260, y = 400)
 l1.bind("<Button-1>", lambda e:
-callback("https://www.youtube.com/watch?v=LIIDh-qI9oI"))
+callback("https://www.youtube.com/watch?v=U1UtRnGn5hc"))
 
 #ar2
 img2 = Image.open('ar1.png')
@@ -58,7 +58,7 @@ rimg2 = ImageTk.PhotoImage(img2)
 l2= Label(win, image=rimg2, cursor="hand2")
 l2.place(x = 600, y = 400)
 l2.bind("<Button-1>", lambda e:
-callback("https://www.youtube.com/watch?v=LIIDh-qI9oI"))
+callback("https://www.youtube.com/watch?v=Nid2HId9EVY"))
 
 #ar2
 img3 = Image.open('ar1.png')
@@ -66,6 +66,6 @@ rimg3 = ImageTk.PhotoImage(img3)
 l3= Label(win, image=rimg3, cursor="hand2")
 l3.place(x = 940, y = 400)
 l3.bind("<Button-1>", lambda e:
-callback("https://www.youtube.com/watch?v=LIIDh-qI9oI"))
+callback("https://www.youtube.com/watch?v=NsJ9fOZyR6Q"))
 
 win.mainloop()
