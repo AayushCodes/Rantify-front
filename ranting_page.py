@@ -40,10 +40,15 @@ e1 = Entry(win, font=('',20)).place(x = 370, y = 165, width=500, height=37)
 #rant = Label(win, text="RANT:", font=("", 27)).place(x = 300, y = 220) 
 canvas1.create_text(345, 255, text="RANT:", fill='black', font=("", 27))
 
+def temp_text(e):
+   rant_text.delete("1.0","end")
+   rant_text.configure(font=("",20), fg='black')
+   
 rant_text = ScrolledText(win, height = 10, width = 50)
 rant_text.place(x = 305, y = 280)
-rant_text.configure(font=("",20))
+rant_text.configure(font=("",20, "italic"), fg='grey')
 rant_text.insert("1.0", "Type Here...")
+rant_text.bind("<FocusIn>", temp_text)
 
 but1 = Button(win, text="I Am Done!",font=("", 25)).place(x = 850, y = 550)
 
