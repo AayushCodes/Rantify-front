@@ -37,7 +37,8 @@ def callback(url):
    webbrowser.open_new_tab(url)
 
 #Create a Label to display the link
-link = Label(win, text="Click Me",font=('Helveticabold', 25), fg="yellow",bg='#295464', cursor="hand2")
+#bg='#295464'
+link = Label(win, text="Click Me",font=('Helveticabold', 25), fg="white",bg='black', cursor="hand2")
 link.place(x = 250, y = 270)
 link.bind("<Button-1>", lambda e:
 callback("https://www.youtube.com/watch?v=LIIDh-qI9oI"))

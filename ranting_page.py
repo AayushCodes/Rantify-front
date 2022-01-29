@@ -34,15 +34,20 @@ canvas1.create_text(645,70,text="The Music You Like", font=("Roboto", 30, "itali
 
 
 #rt = Label(win, text="Title", font=("", 30)).place(x = 300, y = 160)
-canvas1.create_text(332, 180, text="Title", fill='black', font=("", 30))
+canvas1.create_text(332, 180, text="Title:", fill='black', font=("", 30))
 e1 = Entry(win, font=('',20)).place(x = 370, y = 165, width=500, height=37)
 
 #rant = Label(win, text="RANT:", font=("", 27)).place(x = 300, y = 220) 
-canvas1.create_text(345, 255, text="RANT:", fill='black', font=("", 27))
+canvas1.create_text(338, 255, text="Rant:", fill='black', font=("", 27))
+
+check = True
 
 def temp_text(e):
-   rant_text.delete("1.0","end")
-   rant_text.configure(font=("",20), fg='black')
+   global check
+   if check:
+      check = False
+      rant_text.delete("1.0","end")
+      rant_text.configure(font=("",20), fg='black')
    
 rant_text = ScrolledText(win, height = 10, width = 50)
 rant_text.place(x = 305, y = 280)
