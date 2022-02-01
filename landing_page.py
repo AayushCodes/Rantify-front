@@ -5,7 +5,7 @@ import tkinter.font
 #window 
 root=Tk()
 root.title('Rantify-Music That You Like')
-root.iconbitmap('D:\Github\Rantify-front\icon.ico')
+root.iconbitmap('icon.ico')
 root.geometry('500x450')
 
 '''#background of the landing page 
@@ -46,13 +46,13 @@ body2=Label(root,text='“Ranting” has been scientifically proven',font=('Helv
 #bg 
 canvas1 = Canvas(root, width = 1920, height = 1080)
 canvas1.place(x=0,y=0)
-mg = PhotoImage(file="D:\Github\Rantify-front\GRADNEW2.png")
+mg = PhotoImage(file="GRADNEW2.png")
 canvas1.create_image(1,1, anchor=NW, image=mg)
 
 #logo
 canvas = Canvas(root, width = 39, height = 39)
 canvas.place(x=3,y=3)
-img = PhotoImage(file="D:\Github\Rantify-front\ewlog.png")
+img = PhotoImage(file="ewlog.png")
 canvas.create_image(1,1, anchor=NW, image=img)
 
 #Rantify

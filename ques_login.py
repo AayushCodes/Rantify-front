@@ -6,7 +6,7 @@ from tkinter.scrolledtext import ScrolledText
 #window 
 root=Tk()
 root.title('Rantify-Music That You Like')
-root.iconbitmap('D:\Github\Rantify-front\icon.ico')
+root.iconbitmap('icon.ico')
 root.geometry('500x450')
 
 #background of the landing page 
@@ -34,13 +34,13 @@ e.place(x=40,y=540)'''
 
 canvas1 = Canvas(root, width = 1920, height = 1080)
 canvas1.place(x=3,y=3)
-mg = PhotoImage(file="D:\Github\Rantify-front\quesbg.png")
+mg = PhotoImage(file="quesbg.png")
 canvas1.create_image(1,1, anchor=NW, image=mg)
 
 #logo
 canvas = Canvas(root, width = 39, height = 39)
 canvas.place(x=3,y=3)
-img = PhotoImage(file="D:\Github\Rantify-front\ewlog.png")
+img = PhotoImage(file="ewlog.png")
 canvas.create_image(1,1, anchor=NW, image=img)
 
 
