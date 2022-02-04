@@ -3,6 +3,8 @@ from PIL import ImageTk, Image
 import tkinter.font
 from tkinter.scrolledtext import ScrolledText
 
+'''def loginques():'''
+
 #window 
 root=Tk()
 root.title('Rantify-Music That You Like')
@@ -70,14 +72,16 @@ canvas1.pack()
 e=Entry(root,width=100)
 e.place(x=310,y=450)
 
+root.mainloop()
+
 
 #Radio buttons
 '''v = StringVar(canvas1, "1")
- 
+
 # Dictionary to create multiple buttons
 values = {"RadioButton 1" : "1"}
 values1 = {"RadioButton 2" : "1"}
- 
+
 # Loop is used to create multiple Radiobuttons
 # rather than creating each button separately
 for (text, value) in values.items():
@@ -86,4 +90,10 @@ for (text, value) in values.items():
 
 
 
-root.mainloop()
+
+'''def run():
+    root=Tk()
+    loginques(root)
+    root.mainloop'''
+
+

@@ -41,8 +41,6 @@ body2=Label(root,text='same theme,we combined these two and',font=('Helvetica','
 body2=Label(root,text='created Rantify.',font=('Helvetica','18'),bg='#050A30',fg='white').place(x=100,y=430)
 body2=Label(root,text='“Ranting” has been scientifically proven',font=('Helvetica','18'),bg='#050A30',fg='white').place(x=100,y=250)'''
 
-
-
 #bg 
 canvas1 = Canvas(root, width = 1920, height = 1080)
 canvas1.place(x=0,y=0)
@@ -63,9 +61,13 @@ canvas1.create_text(950,250,text='YOUR',fill='#FFD00A',font=('Bungee Shade',35))
 canvas1.create_text(900,320,text='HEART',fill='#FFD00A',font=('Bungee Shade',45))
 canvas1.create_text(950,390,text='OUT',fill='#FFD00A',font=('Bungee Shade',35))
 
+def nextPage():
+    root.destroy()
+    import ques_login
+
 #buttons
 #login button
-logb = Button(root, text='Log in',font=('Helvetica',20,'bold') ,width=10,bg='#748EFF')
+logb = Button(root, text='Log in',font=('Helvetica',20,'bold') ,width=10,bg='#748EFF',command=nextPage)
 logb.place(x=100,y=500)
 
 #signin button 
@@ -84,8 +86,7 @@ canvas1.create_text(193,430,text='created Rantify.',font=('Sans-serif','18'),fil
 
 
 
-root.mainloop()
-
+root.mainloop()    
 
 
 
