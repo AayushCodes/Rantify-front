@@ -10,26 +10,34 @@ def main():
     win = Tk()
     app = login_window(win)
     win.mainloop()
+    mydb=mysql.connector.connect(host="localhost",user="root",passwd="parkhi",port='3307')
+    mycursor=mydb.cursor()
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS new_schema")
+    mycursor.execute("USE new_schema")
+    mycursor.execute("CREATE TABLE IF NOT EXISTS register(fname VARCHAR(45), lname VARCHAR(45), contact varchar(10), email VARCHAR(45) primary key, secques VARCHAR(45), secqans VARCHAR(45), password VARCHAR(45))")
+    mycursor.execute("CREATE TABLE IF NOT EXISTS rants (rants TEXT(65535))")
+
+    mydb.commit()
 
 class login_window:
     def __init__(self, root):
         self.root = root
         self.root.title("Login")
-        self.root.geometry("1550x800+0+0")
+        self.root.geometry("1920x1080")
 
 
-        self.bg = ImageTk.PhotoImage(file = r"C:\Users\aakas\Desktop\Loginform\pexels-jot-2179483.jpg") #Bg image of the whole page
+        self.bg = ImageTk.PhotoImage(file = "login_bg.png") #Bg image of the whole page
         lbl_bg = Label(self.root, image = self.bg)
         lbl_bg.place(x = 0, y = 0, relwidth = 1, relheight = 1)
 
         frame = Frame(self.root, bg = "black")                                                          #The black box 
-        frame.place(x = 610, y = 170, width = 340, height = 450)
+        frame.place(x = 467, y = 150, width = 340, height = 450)
 
-        userprofile = Image.open(r"C:\Users\aakas\Desktop\Loginform\userprofileimg.png")          #The user profile circle
+        userprofile = Image.open("userprofileimg.png")          #The user profile circle
         userprofile = userprofile.resize((100, 100), Image.ANTIALIAS)
         self.photoimage1 = ImageTk.PhotoImage(userprofile)
         labeling1 = Label(image = self.photoimage1, bg = "black", borderwidth = 0)                      #The profile pic is transparent and we use this func to fill the image bg with black
-        labeling1.place(x = 730, y = 175, width = 100, height = 100)
+        labeling1.place(x = 582, y = 160, width = 100, height = 100)
 
         get_str = Label(frame, text = "Get Started", font = ("times new roman", 20, "bold"), fg = "white", bg = "black")
         get_str.place(x = 95, y = 100)
@@ -44,26 +52,28 @@ class login_window:
         password = lbl = Label(frame, text = "Password", font = ("times new roman", 13, "bold"), fg = "white", bg = "black")
         password.place(x = 70, y = 225)
 
-        self.txtpass = Entry(frame, font = ("times new roman", 15, "bold"))
+        self.txtpass = Entry(frame, font = ("times new roman", 15, "bold"),show="*")
         self.txtpass.place(x = 40, y = 250, width = 270)
 
     # ==========ICON IMAGES================================================================================
 
-        userfrontimage = Image.open(r"C:\Users\aakas\Desktop\Loginform\userprofileremovedbg.png")          #The user profile circle
+        userfrontimage = Image.open("userprofileremovedbg.png")          #The user profile circle
         userfrontimage = userfrontimage.resize((50, 50), Image.ANTIALIAS)
         self.photoimage2 = ImageTk.PhotoImage(userfrontimage)
         labeling2 = Label(image = self.photoimage2, bg = "black", borderwidth = 0)
-        labeling2.place(x = 650, y = 323, width = 25, height = 25)
+        labeling2.place(x = 512, y = 302, width = 25, height = 25)
 
-        passfrontimage = Image.open(r"C:\Users\aakas\Desktop\Loginform\passfront.jpg")          #The user profile circle
+        passfrontimage = Image.open("passfront.jpg")          #The user profile circle
         passfrontimage = passfrontimage.resize((50, 50), Image.ANTIALIAS)
         self.photoimage3 = ImageTk.PhotoImage(passfrontimage)
         labeling2 = Label(image = self.photoimage3, bg = "black", borderwidth = 0)
-        labeling2.place(x = 650, y = 393, width = 25, height = 25)
+        labeling2.place(x = 512, y = 373, width = 25, height = 25)
 
 
     #===========login button==================================================================================================================
-
+        def nextPage(self):
+            self.root.destroy()
+            import ques_login
         loginbtn = Button(frame, text = "Login", command = self.login, font = ("Times New Roman", 15, "bold"), bd = 3, relief = RAISED, fg = "white", bg = "sky blue", activeforeground = "white", activebackground = "sky blue")  #loginbutton 
         loginbtn.place(x = 110, y = 300, width = 120, height=35)
 
@@ -82,13 +92,14 @@ class login_window:
 
 #==============backend connectivity==============================================================================================================================================================================================
     
+
     def login(self):
         if self.txtuser.get() == "" or self.txtpass.get() == "":
             messagebox.showerror("Error", "All fields are required")
         elif self.txtuser.get() == "AAKASHGODSINGH" and self.txtpass.get() == "KYUBTAUN":
             messagebox.showinfo("Success", "Welcome to Rantify, rant your hearts out.")
         else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "1234", database = "new_schema")
+            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
             my_cursor = conn.cursor()
             my_cursor.execute("select * from register where email = %s and password = %s", (
                                                                                         self.txtuser.get(),
@@ -98,13 +109,8 @@ class login_window:
             if row == None:
                 messagebox.showerror("Error", "Invalid Username or Password.")
             else:
-                open_main = messagebox.askyesno("Success", "Welcome to Rantify, rant your hearts out.")
-                if open_main>0:
-                    self.new_window = Toplevel(self.new_window)
-                    #self.app = MAINSOFTWARE(self, new_window)
-                else:
-                     if not open_main:
-                         return
+                self.root.destroy()
+                import ranting_page
             conn.commit()
             conn.close()
 
@@ -121,7 +127,7 @@ class login_window:
         elif self.txt_newpass.get() == "":
             messagebox.showerror("Error", "Please enter your new password")
         else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "1234", database = "new_schema")
+            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
             my_cursor = conn.cursor()
             queryfrommysql = ("select * from register where email = %s and secques = %s and secqans = %s")
             valuefrommysql = (self.txtuser.get(), self.combo_secques.get(), self.txt_security)
@@ -140,7 +146,7 @@ class login_window:
         if self.txtuser.get() == "":
             messagebox.showerror("Error", "Please enter the email address/username to reset password")
         else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "1234", database = "new_schema")
+            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
             my_cursor = conn.cursor()
             query = ("select * from register where email = %s")
             value = (self.txtuser.get(),)
@@ -191,7 +197,7 @@ class newuser:
     def __init__(self, root):
         self.root = root
         self.root.title("Register")
-        self.root.geometry("1600x900+0+0")
+        self.root.geometry("1920x1080")
 
  #==================== variables ===========================================================================================================
 
@@ -205,17 +211,17 @@ class newuser:
         self.var_confpass = StringVar()
 
 # ================= bg image ============================================================================================
-        self.bg = ImageTk.PhotoImage(file = r"C:\Users\aakas\Desktop\Loginform\pexels-jakub-novacek-924824.jpg")
+        self.bg = ImageTk.PhotoImage(file = "gradnew.png")
         bg_lbl = Label(self.root, image = self.bg)
         bg_lbl.place(x = 0, y = 0, relwidth = 1, relheight = 1)
 
 # ================= left image ===========================================================================================
-        self.leftbg = ImageTk.PhotoImage(file = r"C:\Users\aakas\Desktop\Loginform\MUSIC for your every rant.jpg")
+        self.leftbg = ImageTk.PhotoImage(file = "MUSIC for your every rant.jpg")
         left_lbl = Label(self.root, image = self.leftbg)
-        left_lbl.place(x = 50, y = 100, width = 389, height = 550)
+        left_lbl.place(x = 25, y = 70, width = 389, height = 550)
 
         frame = Frame(self.root, bg = "white")
-        frame.place(x = 439, y = 100, width = 1000, height = 550)
+        frame.place(x = 390, y = 70, width = 700, height = 550)
 
         register_lbl = Label(frame,text="REGISTER HERE",font=("times new roman", 20, "bold"),fg = "#4682B4", bg = "white")
         register_lbl.place(x = 20, y = 20)
@@ -270,30 +276,34 @@ class newuser:
         password = Label(frame, text = "Password", font = ("times new roman", 15, "bold"), bg = "white")
         password.place(x = 50, y = 310)
 
-        password = ttk.Entry(frame, textvariable =  self.var_password, font = ("times new roman", 15, "bold"))
+        password = ttk.Entry(frame, textvariable =  self.var_password, font = ("times new roman", 15, "bold"),show="*")
         password.place(x = 50, y = 336, width = 250) 
 
         cpass = Label(frame, text = "Confirm Password", font = ("times new roman", 15, "bold"), bg = "white")
         cpass.place(x = 370, y = 310)
 
-        cpass = ttk.Entry(frame, textvariable = self.var_confpass, font = ("times new roman", 15, "bold"))
+        cpass = ttk.Entry(frame, textvariable = self.var_confpass, font = ("times new roman", 15, "bold"),show="*")
         cpass.place(x = 370, y = 336, width = 250)
 
 
     # ========== buttons =============================================================
    
-        regnowimg = Image.open(r"C:\Users\aakas\Desktop\Loginform\regnowbutton.png")
+        '''regnowimg = Image.open(r"Loginform\regnowbutton.png")
         regnowimg = regnowimg.resize((200, 58))
         self.regnimg = ImageTk.PhotoImage(regnowimg)
         regnowbtn = Button(frame, image = self.regnimg, command = self.register_data, borderwidth=0, cursor = "hand2", fg="white")
-        regnowbtn.place(x = 40, y = 405, width = 200)
+        regnowbtn.place(x = 40, y = 405, width = 200)'''
+        regnowbtn = Button(root, text='Register Now',font=('Helvetica',20,'bold') ,width=10,bg='#748EFF',command = self.register_data,cursor='hand2')
+        regnowbtn.place(x = 440, y = 480, width = 200)
 
 
-        lognowimg = Image.open(r"C:\Users\aakas\Desktop\Loginform\sign-in-button-icon-isometric.jpg")
+        '''lognowimg = Image.open("Loginform\sign-in-button-icon-isometric.jpg")
         lognowimg = lognowimg.resize((200, 140))
         self.loginimg = ImageTk.PhotoImage(lognowimg)
         lognowbtn = Button(frame, image = self.loginimg, borderwidth=0, cursor = "hand2", fg="white")
         lognowbtn.place(x = 400, y = 365, width = 200)
+        lognowbtn = Button(root, text='Login',font=('Helvetica',20,'bold') ,width=10,bg='#748EFF',cursor='hand2')
+        lognowbtn.place(x = 780, y = 480, width = 200)'''
 
 
     # ========= Backend 1 - Function Declaration ====================================================
@@ -304,7 +314,7 @@ class newuser:
         elif self.var_password.get() != self.var_confpass.get():
             messagebox.showerror("Error", "Passwords aren't same")
         else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "1234", database = "new_schema")
+            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
             my_cursor = conn.cursor()
             query = ("select * from register where email = %s")
             value = (self.var_email.get(),)
@@ -330,17 +340,6 @@ class newuser:
 
 
 
-
-
-
-
-
-       
-
-
-
-
-
 if __name__ == "__main__":
     main()
-    
+

@@ -9,30 +9,8 @@ from tkinter.scrolledtext import ScrolledText
 root=Tk()
 root.title('Rantify-Music That You Like')
 root.iconbitmap('icon.ico')
-root.geometry('500x450')
+root.geometry('1920x1080')
 
-#background of the landing page 
-'''bg=PhotoImage(file = "D:\Github\Rantify-front\quesbg.png")
-bg1=Label(root,image=bg)
-bg1.place(x=0,y=0,relwidth=1,relheight=1)
-#root.config(bg='#050A30')'''
-
-'''#header
-head=Label(root,text='Rantify',font=("Kollektif", 30),bg='#050A30',fg='white').place(x=75,y=3)
-
-# heading
-ques= Label(root,text='A Few Questions For You',font=('Times','40'),fg='black',border=0).place(x=40,y=200)
-
-#Questions
-q1=Label(root,text='1.How was Your Day?',font=('Comic Sans MS',20),bg='#050A30',fg='white').place(x=40,y=280)
-e=Entry(root,width=40)
-e.place(x=40,y=340)
-q2=Label(root,text='1.How was Your Day?',font=('Comic Sans MS',20),bg='#050A30',fg='white').place(x=40,y=380)
-e=Entry(root,width=40)
-e.place(x=40,y=440)
-q3=Label(root,text='1.How was Your Day?',font=('Comic Sans MS',20),bg='#050A30',fg='white').place(x=40,y=480)
-e=Entry(root,width=40)
-e.place(x=40,y=540)'''
 
 canvas1 = Canvas(root, width = 1920, height = 1080)
 canvas1.place(x=3,y=3)
@@ -71,6 +49,14 @@ canvas1.pack()
 
 e=Entry(root,width=100)
 e.place(x=310,y=450)
+
+def nextPage():
+    
+    root.destroy()
+    import ranting_page
+
+
+sub=Button(root,text='Submit',font=('Helvetica',15),width=12,height=1,command=nextPage).place(x=750,y=500)
 
 root.mainloop()
 
