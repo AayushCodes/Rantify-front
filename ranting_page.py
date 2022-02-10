@@ -1,14 +1,17 @@
 from curses.textpad import Textbox
 from tkinter import *
-from tkinter.scrolledtext import ScrolledText
 from PIL import ImageTk, Image
 from ranting import*
 import webbrowser
 import mysql.connector
 
-#-----------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------
+#get password
+f = open("password.txt","r")
+data = f.read().strip()
+#----------------------------------------------------------------------------------------------------------
 #mysql connection
-mydb=mysql.connector.connect(host="localhost",user="root",passwd="parkhi",port='3307',database='new_schema')
+mydb=mysql.connector.connect(host="localhost",user="root",passwd=data, database='new_schema')
 mycursor=mydb.cursor()
 
 #----------------------------------------------------------------------------------------------------------

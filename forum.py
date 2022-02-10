@@ -2,9 +2,14 @@ from tkinter import *
 from tkinter import ttk
 import mysql.connector as msql
 
+#----------------------------------------------------------------------------------------------------------
+#get password
+f = open("password.txt","r")
+data = f.read().strip()
+
 #---------------------------------------------------------------------------------------------------------
 #mysqlconnection
-mcon=msql.connect(host='localhost',user='root',passwd='parkhi',database='new_schema',port='3307')
+mcon=msql.connect(host='localhost',user='root',passwd=data,database='new_schema')
 curs=mcon.cursor()
 
 
@@ -40,11 +45,11 @@ def query():
     data=curs.fetchall()
     
     for i in data:
-       records=(data[0])
-  
+       records= data[0]
+       
     text_box = Text(root,height=20,width=70)
     text_box.pack(expand=True)
-    text_box.insert('end', records)
+    text_box.insert('end', records[0])
     text_box.config(state='disabled')
     
 query()

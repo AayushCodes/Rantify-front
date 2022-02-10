@@ -2,17 +2,20 @@ from tkinter import*
 from tkinter import ttk
 from PIL import Image, ImageTk    #pip install pillow
 from tkinter import messagebox
-from json.tool import main    
 import mysql.connector
 
 #---------------------------------------------------------------------------------------------------------
 
+f = open("password.txt","r")
+data = f.read().strip()
+
+
+#---------------------------------------------------------------------------------------------------------
 def main():
     win = Tk()
     app = login_window(win)
     win.mainloop()
-    
-    mydb=mysql.connector.connect(host="localhost",user="root",passwd="parkhi",port='3307')
+    mydb=mysql.connector.connect(host="localhost",user="root",passwd=data)
     mycursor=mydb.cursor()
     mycursor.execute("CREATE DATABASE IF NOT EXISTS new_schema")
     mycursor.execute("USE new_schema")
@@ -83,10 +86,6 @@ class login_window:
         registerbtn = Button(frame, text = "Sign Up", command = self.register_window, font = ("Helvetica", 10, "bold"), borderwidth = 0, fg = "white", bg = "black", activebackground="black", activeforeground= "white")  #signupbutton 
         registerbtn.place(x = 90, y = 370, width = 160)
 
-         #forgetpassword
-        forgpassbtn = Button(frame, text = "Forgot password?", command=self.forgot_pass_win,  font = ("Helvetica", 10, "bold"), borderwidth = 0, fg = "white", bg = "black", activeforeground = "white", activebackground = "black")  #signupbutton 
-        forgpassbtn.place(x = 90, y = 335, width = 160, height=35)
-
     
     def register_window(self):
         self.new_window = Toplevel(self.root)
@@ -101,7 +100,7 @@ class login_window:
         elif self.txtuser.get() == "PLACEHOLDER" and self.txtpass.get() == "PLACEHOLDER":
             messagebox.showinfo("Success", "Welcome to Rantify, rant your hearts out.")
         else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
+            conn = mysql.connector.connect(host = "localhost", user = "root", password = data, database = "new_schema")
             my_cursor = conn.cursor()
             my_cursor.execute("select * from register where email = %s and password = %s", (
                                                                                         self.txtuser.get(),
@@ -129,7 +128,7 @@ class login_window:
         elif self.txt_newpass.get() == "":
             messagebox.showerror("Error", "Please enter your new password")
         else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
+            conn = mysql.connector.connect(host = "localhost", user = "root", password = data, database = "new_schema")
             my_cursor = conn.cursor()
             queryfrommysql = ("select * from register where email = %s and secques = %s and secqans = %s")
             valuefrommysql = (self.txtuser.get(), self.combo_secques.get(), self.txt_security)
@@ -142,56 +141,6 @@ class login_window:
                 updatedvalue = (self.txt_newpass.get(), self.txtuser.get())
                 my_cursor.execute(updatedquery, updatedvalue)
 
-# ================== forget pass window ==========================================================================================================================================================================================
-
-    def forgot_pass_win(self):
-        if self.txtuser.get() == "":
-            messagebox.showerror("Error", "Please enter the email address/username to reset password")
-        else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
-            my_cursor = conn.cursor()
-            query = ("select * from register where email = %s")
-            value = (self.txtuser.get(),)
-            my_cursor.execute(query, value)
-            row = my_cursor.fetchone()
-            print(row)
-
-            if row == None:
-                messagebox.showerror("Error", "Please enter valid username")
-            else:
-                conn.close()
-                self.root2 = Toplevel()
-                self.root2.title('Rantify-Music That You Like')
-                self.root2.iconbitmap('icon.ico')
-                self.root2.geometry("320x460+620+170")
-
-                forgotpasslabel = Label(self.root2, text = "Forgot Password", font = ("times new roman", 20, "bold"), fg = "black", bg = "white")
-                forgotpasslabel.place(x = 0, y = 10, relwidth = 1)
-
-                secques = Label(self.root2, text = "Select Security Question", font = ("times new roman", 15, "bold"), bg = "white")
-                secques.place(x = 50, y = 80)
-
-                self.combo_secques = ttk.Combobox(self.root2, font = ("times new roman", 15, "bold"), state = "readonly")
-                self.combo_secques["values"] = ("Select", "Your Birth Place", "Name of a person you despise", "Your least favourite Superhero", "Your favourite song")
-                self.combo_secques.place(x = 50, y = 110, width = 250)
-                self.combo_secques.current(0)
-
-                secqans = Label(self.root2, text = "Security Question answer", font = ("times new roman", 15, "bold"), bg = "white")
-                secqans.place(x = 50, y = 150)
-
-                secqans = ttk.Entry(self.root2, font = ("times new roman", 15, "bold"))
-                secqans.place(x = 50, y = 180, width = 250)
-
-
-
-                newpass = Label(self.root2, text = "New Password", font = ("times new roman", 15, "bold"), bg = "white")
-                newpass.place(x = 50, y = 220)
-
-                secqans = ttk.Entry(self.root2, font = ("times new roman", 15, "bold"))
-                secqans.place(x = 50, y = 250, width = 250)
-
-                btn = Button(self.root2, text = "Reset", font = ("times new roman", 15, "bold"), fg = "white", bg = "sky blue")
-                btn.place(x = 100, y = 290, width = 150)
 
 
 #=======================new user=====================================================================================================================================
@@ -318,7 +267,7 @@ class newuser:
         elif self.var_password.get() != self.var_confpass.get():
             messagebox.showerror("Error", "Passwords aren't same")
         else:
-            conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
+            conn = mysql.connector.connect(host = "localhost", user = "root", password = data, database = "new_schema")
             my_cursor = conn.cursor()
             query = ("select * from register where email = %s")
             value = (self.var_email.get(),)

@@ -1,7 +1,8 @@
 import yake
 from nltk.sentiment import SentimentIntensityAnalyzer
 import language_tool_python
-
+import nltk
+nltk.downloader.download('vader_lexicon')
 
 tool = language_tool_python.LanguageTool('en-US')
 kw_extractor = yake.KeywordExtractor()
