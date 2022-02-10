@@ -18,4 +18,6 @@ Steps to run the program:
 1) Kindly put in your mysql password in the password.txt file
 2) You can run the landing_page.py file and experience Rantify
 
+You might have some issue with the window sizing of the program which is due to variable laptop ratios which is difficult to configure in tkinter. 
+
 We hope you have a pleasant experience. In case of any issues, kindly contact Aayush Gupta (9871771110)(E21CSEU0058)
