@@ -13,17 +13,16 @@ root.geometry('1920x1080')
 
 #bg 
 canvas1 = Canvas(root, width = 1920, height = 1080)
-canvas1.place(x=0,y=0)
-mg = PhotoImage(file="landing_bg.png")
-canvas1.create_image(1,1, anchor=NW, image=mg)
-
+canvas1.pack()
+mg = ImageTk.PhotoImage(file="landing_bg.png")
+canvas1.create_image( 0,0,anchor=NW,image=mg)
 #-----------------------------------------------------------------------------------------------------------
 
 #logo and header
 canvas = Canvas(root, width = 39, height = 39)
-canvas.place(x=3,y=3)
+canvas.place(x=5,y=3)
 img = PhotoImage(file="logo.png")
-canvas.create_image(1,1, anchor=NW, image=img)
+canvas.create_image(0,0, anchor=NW, image=img)
 
 canvas1.create_text(130,27,text='Rantify',font=("Kollektif", 30),fill='black')
 
@@ -46,7 +45,7 @@ def nextPage():
 #-----------------------------------------------------------------------------------------------------------
 
 #login button
-logb = Button(root, text='Register',font=('Helvetica',20,'bold') ,width=10,bg='#748EFF',command=nextPage)
+logb = Button(root, text='Register',font=('Helvetica',20,'bold') ,width=10,bg='#F1E510',command=nextPage)
 logb.place(x=160,y=500)
 
 #-----------------------------------------------------------------------------------------------------------
@@ -63,6 +62,8 @@ canvas1.create_text(305,400,text='same theme,we combined these two',font=('Sans-
 canvas1.create_text(193,430,text='created Rantify.',font=('Sans-serif','18'),fill='white')
 
 #-----------------------------------------------------------------------------------------------------------
+
+
 
 root.mainloop()    
 

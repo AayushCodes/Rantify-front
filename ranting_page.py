@@ -6,9 +6,13 @@ from ranting import*
 import webbrowser
 import mysql.connector
 
+#-----------------------------------------------------------------------------------------------------
+#mysql connection
 mydb=mysql.connector.connect(host="localhost",user="root",passwd="parkhi",port='3307',database='new_schema')
 mycursor=mydb.cursor()
 
+#----------------------------------------------------------------------------------------------------------
+#function to get the rants
 def printInput():
    inp = inputtxt.get(1.0, "end-1c")
    global prediction
@@ -16,9 +20,8 @@ def printInput():
    query=mycursor.execute("INSERT INTO rants VALUES('{}')".format(inp))
    mydb.commit()
    
-   
-  
-   
+#--------------------------------------------------------------------------------------------------------
+# rant check function  
 def output ():
       if prediction==1:
             win.destroy()
@@ -58,24 +61,24 @@ e1 = Entry(win, font=('',20)).place(x = 230, y = 165, width=500, height=37)
 canvas1.create_text(132, 275, text="Rant:", fill='white', font=("Fredoka One", 40))
 canvas1.create_text(350, 275, text="(Don't hold it back)", fill='black', font=("Fredoka One", 20,'italic'))
 
+#-----------------------------------------------------------------------------------------------------------
 frame = Frame(win)                                                          
 frame.place(x = 70, y = 320, width = 850, height = 200)
 # TextBox Creation
 inputtxt = Text(frame,height = 200,width = 850,font=('helvetica',20))
 inputtxt.pack()
 
-
-
-
-
 #-----------------------------------------------------------------------------------------------------------
-#page functionality
-
-
+def click():
+      printInput()
+      lezgo = Button(win, text="Next",font=("", 20),command=output,bg='#748EFF').place(x = 720, y = 530)
+   
 #-----------------------------------------------------------------------------------------------------------
+
 #button
-lezgo = Button(win, text="Lezz Go",font=("", 20),command=output,bg='#748EFF').place(x = 720, y = 530)
-submit=Button(win,text='Submit',font=("", 20),command=printInput,bg='#748EFF').place(x = 450, y = 530)
+
+submit=Button(win,text='Submit',font=("", 20),command=click,bg='#748EFF').place(x = 450, y = 530)
+
 #-----------------------------------------------------------------------------------------------------------
 
 win.mainloop()

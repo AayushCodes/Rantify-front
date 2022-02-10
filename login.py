@@ -5,11 +5,13 @@ from tkinter import messagebox
 from json.tool import main    
 import mysql.connector
 
+#---------------------------------------------------------------------------------------------------------
 
 def main():
     win = Tk()
     app = login_window(win)
     win.mainloop()
+    
     mydb=mysql.connector.connect(host="localhost",user="root",passwd="parkhi",port='3307')
     mycursor=mydb.cursor()
     mycursor.execute("CREATE DATABASE IF NOT EXISTS new_schema")
@@ -18,11 +20,13 @@ def main():
     mycursor.execute("CREATE TABLE IF NOT EXISTS rants (rants TEXT(65535))")
 
     mydb.commit()
+#---------------------------------------------------------------------------------------------------------
 
 class login_window:
     def __init__(self, root):
         self.root = root
-        self.root.title("Login")
+        self.root.title('Rantify-Music That You Like')
+        self.root.iconbitmap('icon.ico')
         self.root.geometry("1920x1080")
 
 
@@ -71,9 +75,7 @@ class login_window:
 
 
     #===========login button==================================================================================================================
-        def nextPage(self):
-            self.root.destroy()
-            import ques_login
+        
         loginbtn = Button(frame, text = "Login", command = self.login, font = ("Times New Roman", 15, "bold"), bd = 3, relief = RAISED, fg = "white", bg = "sky blue", activeforeground = "white", activebackground = "sky blue")  #loginbutton 
         loginbtn.place(x = 110, y = 300, width = 120, height=35)
 
@@ -96,7 +98,7 @@ class login_window:
     def login(self):
         if self.txtuser.get() == "" or self.txtpass.get() == "":
             messagebox.showerror("Error", "All fields are required")
-        elif self.txtuser.get() == "AAKASHGODSINGH" and self.txtpass.get() == "KYUBTAUN":
+        elif self.txtuser.get() == "PLACEHOLDER" and self.txtpass.get() == "PLACEHOLDER":
             messagebox.showinfo("Success", "Welcome to Rantify, rant your hearts out.")
         else:
             conn = mysql.connector.connect(host = "localhost", user = "root", password = "parkhi", database = "new_schema",port="3307")
@@ -159,7 +161,8 @@ class login_window:
             else:
                 conn.close()
                 self.root2 = Toplevel()
-                self.root2.title("Forgot Password")
+                self.root2.title('Rantify-Music That You Like')
+                self.root2.iconbitmap('icon.ico')
                 self.root2.geometry("320x460+620+170")
 
                 forgotpasslabel = Label(self.root2, text = "Forgot Password", font = ("times new roman", 20, "bold"), fg = "black", bg = "white")
@@ -196,7 +199,8 @@ class login_window:
 class newuser:
     def __init__(self, root):
         self.root = root
-        self.root.title("Register")
+        self.root.title('Rantify-Music That You Like')
+        self.root.iconbitmap('icon.ico')
         self.root.geometry("1920x1080")
 
  #==================== variables ===========================================================================================================
@@ -338,7 +342,7 @@ class newuser:
             conn.close()
             messagebox.showinfo("Success", "Registered Successfully")
 
-
+#----------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
     main()

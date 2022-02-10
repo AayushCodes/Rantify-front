@@ -30,10 +30,10 @@ canvas1.create_text(650, 100, text="Looks like you are feeling sad....🙁 \nLet
 canvas1.create_text(610, 240, text="Some playlists to compliment your mood 😉", font=("Patrick Hand", 20), fill='white')
 #------------------------------------------------------------------------------------------------------------------------
 sad = ['https://open.spotify.com/playlist/0nK8XuVZOMGgpAEZAiDcvJ?si=600dbd60cbee4a7b', 'https://open.spotify.com/playlist/44rW9IiTo3nwnCUZ6TcPm9?si=4be0e44af3a14f1d', 'https://open.spotify.com/playlist/6sJOj7IeAfGYgMa7K0SKV1?si=98488cc1bef749c8']
-angy = ['https://open.spotify.com/playlist/1o4EL5f8kAy3hFEbhnSepG?si=04b12e9ade564ca2' , 'https://open.spotify.com/playlist/2VsCCUPJOVJC4fm6ehjOGh?si=db22f524fe464c53' , 'https://open.spotify.com/playlist/5X7JBNkfpIRN9RQ4vGwR3s?si=57d61df139224314']
+angry = ['https://open.spotify.com/playlist/1o4EL5f8kAy3hFEbhnSepG?si=04b12e9ade564ca2' , 'https://open.spotify.com/playlist/2VsCCUPJOVJC4fm6ehjOGh?si=db22f524fe464c53' , 'https://open.spotify.com/playlist/5X7JBNkfpIRN9RQ4vGwR3s?si=57d61df139224314']
 vibe = ['https://open.spotify.com/playlist/45rSanWaqUS3CfjVLpug4f?si=951ad5d693184b1c', 'https://open.spotify.com/playlist/0lkvKHCQiiEE9aL9PHwVXU?si=fe5b7ded712948ee', 'https://open.spotify.com/playlist/5uGok6lOvApECG3pWzMuHp?si=ef9a1f17ef414592']
 sadrandom=random.choice(sad)
-angyrandom=random.choice(angy)
+angryrandom=random.choice(angry)
 viberandom=random.choice(vibe)
 
 def callback(url):
@@ -47,13 +47,13 @@ l1.bind("<Button-1>", lambda e:
 
 l1 = Label(root, text="Enraged", font=('helvetica', 20,'bold'),
         fg='black', bg='#748EFF', cursor="hand2")
-l1.place(x=435, y=300)
+l1.place(x=530, y=300)
 l1.bind("<Button-1>", lambda e:
-        callback(angyrandom))
+        callback(angryrandom))
 
 l1 = Label(root, text="Wanna Vibe", font=('helvetica', 20,'bold'),
         fg='black', bg='#748EFF', cursor="hand2")
-l1.place(x=600, y=300)
+l1.place(x=770, y=300)
 l1.bind("<Button-1>", lambda e:
         callback(viberandom))
 #----------------------------------------------------------------------------------------------------------------------------
@@ -66,4 +66,6 @@ def nextPage():
 canvas1.create_text(600,500,text='Would you like to read some random rants?',font=('Patrick Hand',25),fill='white')
 button=Button(root,text='Yes',command=nextPage,font=("",15),bg='#748EFF').place(x=880,y=480)   
 #---------------------------------------------------------------------------------------------------------------   
+
+
 root.mainloop()

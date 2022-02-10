@@ -3,6 +3,7 @@ from tkinter import ttk
 import mysql.connector as msql
 
 #---------------------------------------------------------------------------------------------------------
+#mysqlconnection
 mcon=msql.connect(host='localhost',user='root',passwd='parkhi',database='new_schema',port='3307')
 curs=mcon.cursor()
 
@@ -32,16 +33,19 @@ canvas1.create_text(130,27,text='Rantify',font=("Kollektif", 30),fill='black')
 #----------------------------------------------------------------------------------------------------------
 canvas1.create_text(700,30, text="Rant Forum", font=("times", 40))
 #----------------------------------------------------------------------------------------------------------
-
+#function to fetch random rants from database
 def query():
-    query='select * from RANTS order by RAND() limit 1'
+    query='select * from RANTS order by RAND() limit 3'
     curs.execute(query)
     data=curs.fetchall()
     
     for i in data:
        records=(data[0])
-    canvas1.create_text(300,200,text='Rants:', font=('helvetica',30))   
-    canvas1.create_text(450,200,text=records, font=('helvetica',20))
+  
+    text_box = Text(root,height=20,width=70)
+    text_box.pack(expand=True)
+    text_box.insert('end', records)
+    text_box.config(state='disabled')
     
 query()
 #-----------------------------------------------------------------------------------------------------------
